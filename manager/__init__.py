@@ -1,1 +1,3 @@
-__author__ = 'skull'
+from flask import Flask
+
+app = Flask(__name__)
