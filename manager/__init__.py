@@ -6,7 +6,7 @@ from flask.ext.assets import Bundle, Environment
 app = Flask(__name__)
 
 # Load the app config
-app.config_from_object("config.Config")
+app.config.from_object("config.Config")
 
 assets = Environment(app)
 
