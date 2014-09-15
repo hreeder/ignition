@@ -33,3 +33,5 @@ assets.register(
         output='css_all.css'
     )
 )
+
+from manager.views import core
