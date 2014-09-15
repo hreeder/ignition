@@ -56,3 +56,12 @@ target/
 
 # Idea
 .idea/
+
+# Configuration
+config.py
+
+# Bower
+bower_components/
+css_all.css
+js_all.js
+.webassets-cache/

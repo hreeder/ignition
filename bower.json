@@ -1,0 +1,20 @@
+{
+    "name": "ignition",
+    "version": "0.0.1-dev",
+    "authors": [
+        "Harry Reeder <harry@harryreeder.co.uk"
+    ],
+    "description": "Python Based Web Management Tool",
+    "license": "MIT",
+    "homepage": "https://github.com/hreeder/ignition",
+    "private": "true",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootswatch": "3.2.0+2"
+    }
+}

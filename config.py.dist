@@ -1,0 +1,14 @@
+import os
+
+
+class DevelopmentConfig(object):
+    pass
+
+
+class ProductionConfig(object):
+    pass
+
+
+# Change DevelopmentConfig to ProductionConfig as you see fit
+class Config(DevelopmentConfig):
+    SECRET_KEY = os.urandom(64)
