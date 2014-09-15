@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+        <div class="col-md-4 col-md-offset-4">
+            <form action method="POST" class="form-horizontal well">
+                <div class="row form-group" id="title">
+                    <h3>Log In</h3>
+                </div>
+                <div class="row form-group" id="user">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input class="form-control" type="text" placeholder="Username" autocomplete="off" id="username" name="username"/>
+                    </div>
+                </div>
+                <div class="row form-group" id="pass">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-key"></i></span>
+                        <input class="form-control" type="text" placeholder="Password" autocomplete="off" id="password" name="password"/>
+                    </div>
+                </div>
+                <div class="row form-group clearfix" id="login">
+                    <button class="btn btn-success pull-right">Log In</button>
+                </div>
+            </form>
+        </div>
+{% endblock %}
