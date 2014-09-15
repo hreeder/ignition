@@ -27,8 +27,7 @@ assets.register(
 assets.register(
     'css_all',
     Bundle(
-        'bootstrap/dist/css/bootstrap.css',
-        'bootstrap/dist/css/bootstrap-theme.css',
+        'bootswatch/sandstone/bootstrap.css',
         'css/ignition.css',
         output='css_all.css'
     )
