@@ -11,4 +11,4 @@ def login():
 
 @app.route("/register")
 def register():
-    regurn render_template("register.html")
+    return render_template("register.html")
