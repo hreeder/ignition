@@ -13,8 +13,11 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_anonymous() %}
             <li{% if request.path == "/login" %} class="active"{% endif %}><a href="/login">Login</a></li>
             <li{% if request.path == "/register" %} class="active"{% endif %}><a href="/register">Register</a></li>
+            {% else %}
+            {% endif %}
         </ul>
     </div>
 </div>
