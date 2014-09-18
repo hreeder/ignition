@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
-{% include "parts/headers.html" %}
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}Ignition{% endblock %} | Ignition</title>
+    {% assets "css_all" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}"/>
+    {% endassets %}
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    {% block extracss %}
+    {% endblock %}
+</head>
 <body>
     <div class="container">
         {% include "parts/navbar.html" %}
@@ -8,6 +17,18 @@
         {% endblock %}
     </div>
 
-{% include "parts/footers.html" %}
+<hr>
+<div class="container">
+    <div class="pull-left">
+        <span>
+            <small>Ignition</small><br/>
+            <small><a href="https://github.com/hreeder/ignition"><i class="fa fa-github-square"></i></a></small>
+        </span>
+    </div>
+</div>
+{% assets "js_all" %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
 </body>
 </html>
