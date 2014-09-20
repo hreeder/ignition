@@ -40,3 +40,4 @@ assets.register(
 )
 
 from manager.views import core
+from manager.models import users
