@@ -2,13 +2,20 @@ import os
 
 
 class DevelopmentConfig(object):
-    pass
+    DB_HOST = 'localhost'
+    DB_USER = ''
+    DB_PASS = ''
+    DB_NAME = ''
 
 
 class ProductionConfig(object):
-    pass
+    DB_HOST = ''
+    DB_USER = ''
+    DB_PASS = ''
+    DB_NAME = ''
 
 
 # Change DevelopmentConfig to ProductionConfig as you see fit
 class Config(DevelopmentConfig):
     SECRET_KEY = os.urandom(64)
+    SQLALCHEMY_URL = 'mysql://%s:%s@%s/%s' % (DB_USER, DB_PASS, DB_HOST, DB_NAME)
