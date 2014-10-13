@@ -16,6 +16,10 @@
 		background-color: #f8f5f0;
 		padding: 0 10px;
 	}
+
+	#google-login {
+		text-align: center;
+	}
 </style>
 {% endblock %}
 
@@ -41,11 +45,30 @@
                     <button class="btn btn-success pull-right" type="submit">Log In</button>
                 </div>
 	    </form>
-	    <div style="text-align: center;"><h3>OR</h3></div>
+<!--	    <div style="text-align: center;"><h3>OR</h3></div>
 	    <div class="well">
-		<div class="row form-group clearfix">
-			<a class="btn btn-info btn-block" href="/login/google">Login With Google</a>
+		<div class="row form-group clearfix" id="google-login">
+			<!-- G+ login -->
+			<span id="signinButton">
+			  <span
+			    class="g-signin"
+			    data-callback="signinCallback"
+			    data-clientid="{{ config.GOOGLE_CLIENT_ID }}"
+			    data-cookiepolicy="single_host_origin"
+			    data-scope="profile">
+			  </span>
+			</span>
 		</div>
-            </div>
+            </div>-->
         </div>
+{% endblock %}
+
+{% block endjs %}
+<!--    <script type="text/javascript">
+      (function() {
+       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+     })();
+    </script>-->
 {% endblock %}

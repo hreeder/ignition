@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Register Account{% endblock %}
+
+{% block main %}
+	<div class="col-md-10 col-md-offset-1">
+		<form action method="POST" class="form-horizontal well">
+			<div class="row form-group" id="title">
+				<h3>Register</h3>
+			</div>
+
+			<div class="row form-group" id="row-username">
+				<label class="col-md-2 control-label">Username</label>
+				<div class="col-md-10">
+					<input class="form-control" name="username" autofocus></input>
+				</div>
+			</div>
+
+			<div class="row form-group" id="row-email">
+				<label class="col-md-2 control-label" type="email">E-Mail</label>
+				<div class="col-md-10">
+					<input class="form-control"></input>
+				</div>
+			</div>
+
+			<div class="row form-group" id="row-password">
+				<label class="col-md-2 control-label">Password</label>
+				<div class="col-md-10">
+					<input class="form-control" type="password"></input>
+				</div>
+			</div>
+
+                        <div class="row form-group" id="row-password">
+                                <label class="col-md-2 control-label">Confirm Password</label>
+                                <div class="col-md-10">
+                                        <input class="form-control" type="password"></input>
+                                </div>
+                        </div>
+
+			<div class"row form-group" id="row-button">
+				<div class="col-md-10 col-md-offset-2">
+					<button class="btn btn-block btn-primary" type="submit">Register</button>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+		</form>
+	</div>
+{% endblock %}
