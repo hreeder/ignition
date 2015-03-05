@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block heading %}Welcome to Ignition{% endblock %}
+{% block subheading %}{{ current_user.get_display_name() }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ url_for('core.home') }}">
+            <i class="fa fa-key"></i>
+            Ignition
+        </a>
+    </li>
+    <li class="active">Home</li>
+{% endblock %}
+
+{% block main %}
+
+{% endblock %}

@@ -2,46 +2,115 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{% block title %}Ignition{% endblock %} | Ignition</title>
-    {% assets "css_all" %}
-        <link rel="stylesheet" href="{{ ASSET_URL }}"/>
-    {% endassets %}
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    {% block extracss %}
-    {% endblock %}
+    <title>{% block title %}{% endblock %} | Ignition</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    {% block extracss %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminLTE.css') }}" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-    <div class="container">
-        {% include "parts/navbar.html" %}
+<body class="skin-black">
+    <header class="header">
+        <a class="logo" href="{{ url_for('core.home') }}">Ignition</a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a class="navbar-btn sidebar-toggle" href="#" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    {% if current_user.is_authenticated() %}
+                        <li class="dropdown user user-menu">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>
+                                    {{ current_user.get_display_name() }}
+                                    <b class="caret"></b>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('core.logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-	{% with messages = get_flashed_messages(with_categories=true) %}
-		{% if messages %}
-			{% for category, message in messages %}
-			<div class="alert alert-{% if category != "message" %}{{ category }}{% else %}danger{% endif %}">
-				<a class="close" cata-dismiss="alert">&times</a>
-				{{ message }}
-			</div>
-			{% endfor %}
-		{% endif %}
-	{% endwith %}
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <aside class="left-side sidebar-offcanvas">
+            <section class="sidebar">
+                {% if current_user.is_authenticated() %}
+                    <ul class="sidebar-menu">
+                        <li{% if request.path == url_for('core.home') %} class="active"{% endif %}><a href="{{ url_for('core.home') }}"><i class="fa fa-home"></i> Home</a></li>
+                        <li{% if request.path.startswith(url_for('core.profile')) %} class="active"{% endif %}><a href="{{ url_for('core.profile') }}"><i class="fa fa-user"></i> Your Profile</a></li>
+			<li class="treeview{% if request.path.startswith(url_for('dns.home')) %} active{% endif %}">
+			  <a href="">
+			    <i class="fa fa-globe"></i> Domains
+			    <i class="pull-right fa fa-angle-left"></i>
+			  </a>
+			  <ul class="treeview-menu">
+			    <li><a href="{{ url_for('dns.home') }}">
+				<i class="fa fa-bars fa-fw"></i>
+				Your Domains
+			    </a></li>
+			    <li><a href="">
+				<i class="fa fa-plus-square-o fa-fw"></i>
+				Add a Domain
+			    </a></li>
+			    <li><a href="">
+				<i class="fa fa-cloud fa-fw"></i>
+				Cloudflare API Keys
+			    </a></li>
+			  </ul>
+			</li>
+                    </ul>
+                {% endif %}
+            </section>
+        </aside>
 
-        {% block main %}
-        {% endblock %}
+        <aside class="right-side">
+            <section class="content-header">
+                <h1>
+                    {% block heading %}{% endblock %}
+                    <small>{% block subheading %}{% endblock %}</small>
+                </h1>
+                <ol class="breadcrumb">
+                    {% block breadcrumbs %}{% endblock %}
+                </ol>
+            </section>
+            <section class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{% if category != 'message' %}{{ category }}{% else %}danger{% endif %} alert-dismissable">
+                                <i class="fa fa-{% if category == 'success' %}check{% else %}ban{% endif %}"></i>
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <b>Alert! </b>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                {% block main %}{% endblock %}
+            </section>
+        </aside>
     </div>
 
-<hr>
-<div class="container">
-    <div class="pull-left">
-        <span>
-            <small>Ignition</small><br/>
-            <small><a href="https://github.com/hreeder/ignition"><i class="fa fa-github-square"></i></a></small>
-        </span>
-    </div>
-</div>
-{% assets "js_all" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
-{% block endjs %}
-{% endblock %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/AdminLTE/app.js') }}"></script>
+    {% block extrajs %}{% endblock %}
 </body>
 </html>

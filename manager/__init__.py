@@ -2,7 +2,9 @@ import os
 
 from flask import Flask
 from flask.ext.assets import Bundle, Environment
-from flask.ext.login import LoginManager
+from flask.ext.bcrypt import Bcrypt
+from flask.ext.login import LoginManager, current_user
+from flask.ext.migrate import Migrate
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -11,11 +13,22 @@ app = Flask(__name__)
 app.config.from_object("config.Config")
 
 assets = Environment(app)
-db= SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+migrate = Migrate(app, db)
 
-login = LoginManager()
-login.init_app(app)
+# Load Blueprints
+from manager.core import core
+from manager.dns import dns
 
+app.register_blueprint(core)
+app.register_blueprint(dns, url_prefix="/dns")
+
+# Configure flask-login
+login_manager.login_view = "core.login"
+
+# Asset Management
 assets.load_path = [
     os.path.join(os.path.dirname(__file__), 'static'),
     os.path.join(os.path.dirname(__file__), 'static', 'bower_components')
@@ -33,11 +46,7 @@ assets.register(
 assets.register(
     'css_all',
     Bundle(
-        'bootswatch/sandstone/bootstrap.css',
-        'css/ignition.css',
+        'bootstrap/dist/css/bootstrap.css',
         output='css_all.css'
     )
 )
-
-from manager.views import core
-from manager.models import users

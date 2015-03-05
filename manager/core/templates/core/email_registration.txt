@@ -1,0 +1,11 @@
+Hello {{ username }},
+
+You recently registered on Auth, at {{ siteurl }}.
+
+If this was you, please click the following link to activate your account:
+{{ activationurl }}
+
+If this was not you, please disregard this email.
+
+Thanks
+The Admins
