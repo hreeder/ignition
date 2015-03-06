@@ -60,7 +60,7 @@ target/
 config.py
 
 # Bower
-bower_components/
+bower/
 css_all.css
 js_all.js
 .webassets-cache/
