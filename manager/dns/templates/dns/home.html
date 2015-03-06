@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Domains{% endblock %}
+{% block heading %}Your Domains{% endblock %}
+{% block subheading %}Domains You Can Access{% endblock %}
+
+{% block breadcrumbs %}
+    <li>
+        <a href="{{ url_for('core.home') }}">
+            <i class="fa fa-key"></i>
+            Ignition
+        </a>
+    </li>
+    <li class="active">Domains</li>
+{% endblock %}
+
+{% block main %}
+    {% for row in domains|batch(4) %}
+    <div class="row">
+        {% for domain in row %}
+            <div class="col-xs-12 col-md-3">
+
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

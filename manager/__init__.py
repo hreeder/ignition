@@ -31,7 +31,7 @@ login_manager.login_view = "core.login"
 # Asset Management
 assets.load_path = [
     os.path.join(os.path.dirname(__file__), 'static'),
-    os.path.join(os.path.dirname(__file__), 'static', 'bower_components')
+    os.path.join(os.path.dirname(__file__), 'static', 'bower')
 ]
 
 assets.register(
