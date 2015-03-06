@@ -47,6 +47,9 @@ assets.register(
     'css_all',
     Bundle(
         'bootstrap/dist/css/bootstrap.css',
+        'fontawesome/css/font-awesome.min.css',
+        'admin-lte/dist/css/AdminLTE.css',
+        'admin-lte/dist/css/skins/skin-black.min.css',
         output='css_all.css'
     )
 )
