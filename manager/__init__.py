@@ -39,6 +39,7 @@ assets.register(
     Bundle(
         'jquery/dist/jquery.min.js',
         'bootstrap/dist/js/bootstrap.min.js',
+        'admin-lte/dist/js/app.min.js',
         output='js_all.js'
     )
 )
@@ -48,6 +49,7 @@ assets.register(
     Bundle(
         'bootstrap/dist/css/bootstrap.css',
         'fontawesome/css/font-awesome.min.css',
+        'ionicons/css/ionicons.min.css',
         'admin-lte/dist/css/AdminLTE.css',
         'admin-lte/dist/css/skins/skin-black.min.css',
         output='css_all.css'

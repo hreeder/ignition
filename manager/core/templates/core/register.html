@@ -1,11 +1,17 @@
 {% extends "external.html" %}
 {% block title %}Register{% endblock %}
+
+{% block bodyclasses %}register-page{% endblock %}
+
 {% block main %}
-    <div class="form-box" id="login-box">
-        <div class="header">Register</div>
-        <form action="" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="body bg-gray">
+    <div class="register-box">
+        <div class="register-logo">
+            <b>Ignition</b>
+        </div>
+        <div class="register-box-body">
+            <p class="login-box-msg">Register a new account</p>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.username(class="form-control", placeholder=form.username.label.text) }}
                 </div>
@@ -18,10 +24,10 @@
                 <div class="form-group">
                     {{ form.confirm(class="form-control", placeholder=form.confirm.label.text) }}
                 </div>
-            </div>
-            <div class="footer">
-                <input type="submit" value="Register" class="btn btn-block bg-olive" />
-            </div>
-        </form>
+                <div class="footer">
+                    <input type="submit" value="Register" class="btn btn-block bg-olive" />
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

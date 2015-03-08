@@ -1,25 +1,31 @@
 {% extends "external.html" %}
 {% block title %}Login{% endblock %}
 
+{% block bodyclasses %}login-page{% endblock %}
+
 {% block main %}
-    <div class="form-box" id="login-box">
-        <div class="header">Login</div>
-        <form action="" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="body bg-gray">
-                <div class="form-group">
-                    {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+    <div class="login-box">
+        <div class="login-logo">
+            <b>Ignition</b>
+        </div>
+
+        <div class="login-box-body">
+            <p class="login-box-msg">Log in to Ignition</p>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password(class="form-control", placeholder=form.password.label.text) }}
+                    </div>
+                <div class="footer">
+                    <input type="submit" value="Login" class="btn btn-block bg-olive" />
+                    <br/>
+                    <a href="{{ url_for('core.register') }}" class="btn btn-info">Register Account</a>
+                    <a href="{{ url_for('core.forgotten_password') }}" class="btn btn-warning pull-right">Forgot Password</a>
                 </div>
-                <div class="form-group">
-                    {{ form.password(class="form-control", placeholder=form.password.label.text) }}
-                </div>
-            </div>
-            <div class="footer">
-                <input type="submit" value="Login" class="btn btn-block bg-olive" />
-                <br/>
-                <a href="{{ url_for('core.register') }}" class="btn btn-info">Register Account</a>
-                <a href="{{ url_for('core.forgotten_password') }}" class="btn btn-warning pull-right">Forgot Password</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock %}

@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} | Ignition</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    {% assets "css_all" %}
+    <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css" />
+    {% endassets %}
     <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     {% block extracss %}{% endblock %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/AdminLTE.css') }}" type="text/css"/>
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,7 +19,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="bg-black">
+<body class="{% block bodyclasses %}{% endblock %}">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="container">
@@ -35,9 +37,9 @@
 
     {% block main %}
     {% endblock %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/AdminLTE/app.js') }}"></script>
+    {% assets "js_all" %}
+    <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     {% block extrajs %}{% endblock %}
 </body>
 </html>

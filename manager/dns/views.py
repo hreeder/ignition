@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, flash, request
-from flask.ext.login import login_required
+from flask.ext.login import login_required, current_user
 
 from manager.dns import dns
 from manager.dns.models import CFApiKey, CFDomain, CFDomainAccess
@@ -7,28 +7,11 @@ from manager.dns.models import CFApiKey, CFDomain, CFDomainAccess
 @dns.route("/")
 @login_required
 def home():
-    domains = [
-        {
-            'name': 'f-t.so',
-            'id': 1
-        },
-        {
-            'name': 'butts.so',
-            'id': 2
-        },
-        {
-            'name': 'f-t.so',
-            'id': 3
-        },
-        {
-            'name': 'f-t.so',
-            'id': 4
-        },
-        {
-            'name': 'f-t.so',
-            'id': 5
-        },
-    ]
+    keys = CFApiKey.query.filter_by(owner=current_user.id).all()
+    domains = []
+
+    for key in keys:
+        domains.extend(CFDomain.query.filter_by(key=key).all())
     return render_template("dns/home.html",domains=domains)
 
 @dns.route("/add")

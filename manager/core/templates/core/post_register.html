@@ -1,11 +1,17 @@
 {% extends "external.html" %}
 {% block title %}Register{% endblock %}
+
+{% block bodyclasses %}register-page{% endblock %}
+
 {% block main %}
-    <div class="form-box" id="login-box">
-        <div class="header">Register</div>
-        <div class="body bg-gray">
-            <p>You have now been sent an e-mail. Please click the link contained within to activate your account.</p>
-            <p>Any account not activated within 7 days will be automatically deleted.</p>
+    <div class="register-box">
+        <div class="register-logo">
+            <b>Ignition</b>
+        </div>
+        <div class="register-box-body">
+            <p class="login-box-msg">Register</p>
+            <p class="login-box-msg">You have now been sent an e-mail. Please click the link contained within to activate your account.</p>
+            <p class="login-box-msg">Any account not activated within 7 days will be automatically deleted.</p>
         </div>
     </div>
 {% endblock %}

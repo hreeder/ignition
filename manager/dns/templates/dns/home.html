@@ -15,13 +15,25 @@
 {% endblock %}
 
 {% block main %}
-    {% for row in domains|batch(4) %}
+    {% for row in domains|batch(3) %}
     <div class="row">
         {% for domain in row %}
-            <div class="col-xs-12 col-md-3">
-
+            <div class="col-xs-12 col-md-4">
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>{{ domain.name }}</h3>
+                    </div>
+                    <a href="" class="small-box-footer">
+                        Manage This Domain
+                        <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
             </div>
         {% endfor %}
+    </div>
+    {% else %}
+    <div class="row">
+        <h4 class="col-xs-12">You do not currently have access to any domains via Ignition</h4>
     </div>
     {% endfor %}
 {% endblock %}
